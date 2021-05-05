@@ -35,13 +35,23 @@
 
 
 
-    $(document).ready(function(){
-  $("button").click(function(){
-    $.ajax({url: "http://zumatra.com/teach/colors.php", success: function(result){
-      $("#div1").html(result);
-    }});
-  });
+
+fetch('http://zumatra.com/teach/colors.php', {
+  method: 'GET', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
 });
+
+    
 
 
     </script>
