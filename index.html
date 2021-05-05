@@ -25,7 +25,17 @@
     <button onclick="fetchText()">Get External Content</button>
 
 
+<section>
+    <div>
+        <div class="container">
+            <div class="card">
+                <div class="card-body" id="fetch_result">
 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
@@ -42,7 +52,14 @@ async function fetchText() {
     let response = await fetch('https://zumatra.com/teach/colors.php');
     let data = await response.text();
     console.log(data);
+
+    var card_data = document.getElementById('fetch_result');
+    card_data.innerHTML = data;
+
+
 }
+
+
 
     
 
