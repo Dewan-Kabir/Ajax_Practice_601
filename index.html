@@ -23,6 +23,7 @@
 
     <div id="div1"><h2>AJAX Practice Homework -Dewan Kabir</h2></div>
     <button class="btn btn-primary" onclick="fetchText()">Get Fetch Data</button>
+    <button id="run" type="button" class="pure-button pure-button-primary" onclick="loadTest()" >Run</button>
 
    
 
@@ -63,6 +64,52 @@ async function fetchText() {
 
 }
 
+async function fetchWithTimeout(resource, options) {
+  const { timeout = 6000 } = options;
+  
+  const timeout_controller = new AbortController();
+  const id = setTimeout(() => timeout_controller.abort(), timeout);
+
+  const response = await fetch(resource, {
+    ...options,
+    signal: timeout_controller.signal  
+  });
+  clearTimeout(id);
+
+  return response;
+}
+
+
+async function loadTest() {
+  try {
+    const response = await fetchWithTimeout("https://zumatra.com/teach/never_return.php", {
+      timeout: 2000
+    });
+    const games = await response.json();
+    return games;
+  } catch (error) {
+    // Timeouts if the request takes
+    // longer than 6 seconds
+    console.log(error.name === 'AbortError');
+  }
+}
+
+
+/**
+
+window.addEventListener("DOMContentLoaded", event => {
+            document.querySelector("#run").addEventListener("click", event => {
+                $.ajax({ 
+                    url: "https://zumatra.com/teach/never_return.php",
+                    timeout: 2000
+                }).done(() => {
+                    console.log("Completed");
+                }).fail(() => {
+                    console.error("Timeout!");
+                });
+            });
+        });
+**/
 
         
    
