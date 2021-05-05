@@ -38,24 +38,11 @@
 
 
 
-fetch('http://bit.ly/35oNmAx')
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-        return;
-      }
-
-      // Examine the text in the response
-      response.json().then(function(data) {
-        console.log(data);
-      });
-    }
-  )
-  .catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });
+async function fetchText() {
+    let response = await fetch('http://zumatra.com/teach/colors.php');
+    let data = await response.text();
+    console.log(data);
+}
 
     
 
