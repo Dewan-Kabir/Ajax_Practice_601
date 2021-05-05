@@ -24,6 +24,8 @@
     <div id="div1"><h2>AJAX Practice Homework -Dewan Kabir</h2></div>
     <button class="btn btn-primary" onclick="fetchText()">Get Fetch Data</button>
 
+    <button id="run" type="button" class="pure-button pure-button-primary">Run</button>
+
 
 <section>
     <div>
@@ -36,6 +38,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 
@@ -58,6 +62,21 @@ async function fetchText() {
 
 
 }
+
+
+        window.addEventListener("DOMContentLoaded", event => {
+            document.querySelector("#run").addEventListener("click", event => {
+                $.ajax({ 
+                    url: "https://zumatra.com/teach/never_return.php",
+                    timeout: 2000
+                }).done(() => {
+                    console.log("Completed");
+                }).fail(() => {
+                    console.error("Timeout!");
+                });
+            });
+        });
+   
 
 
 
