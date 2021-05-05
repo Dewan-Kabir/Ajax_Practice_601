@@ -14,21 +14,30 @@
   <body>
     <h1>Hello, world!</h1>
 
+
+
+
+    <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+    <button>Get External Content</button>
+
+
+
+
+
+
+
+
     <script>
 
 
-var jqxhr = $.get( "http://zumatra.com/teach/colors.php", function() {
-    alert( "success" );
-  })
-    .done(function() {
-      alert( "second success" );
-    })
-    .fail(function() {
-      alert( "error" );
-    })
-    .always(function() {
-      alert( "finished" );
-    });
+
+    $(document).ready(function(){
+  $("button").click(function(){
+    $.ajax({url: "http://zumatra.com/teach/colors.php", success: function(result){
+      $("#div1").html(result);
+    }});
+  });
+});
 
 
     </script>
